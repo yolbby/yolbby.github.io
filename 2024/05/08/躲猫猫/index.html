@@ -287,8 +287,10 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#学活广场 humb1e似乎在旗杆背后探头探脑</span></span><br><span class="line">secret = <span class="built_in">bin</span>(bytes_to_long(humble_part))[<span class="number">2</span>:]</span><br><span class="line">R.&lt;humb1e&gt; = PolynomialRing(GF(getPrime(<span class="number">50</span>)))</span><br><span class="line">R = R.quo(humb1e^<span class="number">30</span>+random.randint(<span class="number">1</span>,<span class="number">2</span>^<span class="number">49</span>)*humb1e+<span class="number">1</span>)</span><br><span class="line">look_for_humb1e = [R(humb1e ^ (<span class="number">1500</span>*random.choice([<span class="built_in">ord</span>(<span class="string">&#x27;h&#x27;</span>),<span class="built_in">ord</span>(<span class="string">&#x27;u&#x27;</span>),<span class="built_in">ord</span>(<span class="string">&#x27;m&#x27;</span>),<span class="built_in">ord</span>(<span class="string">&#x27;b&#x27;</span>),<span class="built_in">ord</span>(<span class="string">&#x27;1&#x27;</span>),<span class="built_in">ord</span>(<span class="string">&#x27;e&#x27;</span>)]))) <span class="keyword">if</span> i == <span class="string">&#x27;1&#x27;</span> <span class="keyword">else</span> R.random_element() <span class="keyword">for</span> i <span class="keyword">in</span> secret]</span><br></pre></td></tr></table></figure>
 <p>Roll了一个多项式商环R，然后去在环上进行运算。令R函数表示随机，那么此时我们对于flag的不同位数，有
 <span class="math display">\[
-flag[i]=1:humb1e^{1500*R(h,u,m,b,1,e)} \newline
+\begin{split}
+flag[i]=1:humb1e^{1500*R(h,u,m,b,1,e)} \\
 flag[i]=0:Random \space element
+\end{split}
 \]</span>
 那么显然，在数据当中出现次数大于1次极有可能等价于flag[i]=1（因为modulus的度有30），统计一下就可以恢复flag串。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">R.&lt;humb1ebar&gt; = PolynomialRing(ZZ)</span><br><span class="line">data = </span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span>.join(<span class="string">&#x27;1&#x27;</span> <span class="keyword">if</span> data.count(data[i]) &gt; <span class="number">1</span> <span class="keyword">else</span> <span class="string">&#x27;0&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)))</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(flag,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">#CBCTF&#123;H4ppy_N3wyear</span></span><br></pre></td></tr></table></figure>
@@ -296,8 +298,10 @@ flag[i]=0:Random \space element
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#都放假了四教还亮着灯？抓到Ech0在躲猫猫的时候偷学密码！</span></span><br><span class="line">secret = <span class="built_in">bin</span>(bytes_to_long(Ech0_part))[<span class="number">2</span>:]</span><br><span class="line">look_for_Ech0 = [prod([j[<span class="number">0</span>]^(j[<span class="number">1</span>]-<span class="number">1</span>)*(j[<span class="number">0</span>]-<span class="number">1</span>) <span class="keyword">for</span> j <span class="keyword">in</span> factor(random.getrandbits(<span class="number">100</span>))]) <span class="keyword">if</span> i == <span class="string">&#x27;1&#x27;</span> <span class="keyword">else</span> getPrime(<span class="number">100</span>)-<span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span> secret]</span><br></pre></td></tr></table></figure>
 <p>这个部分的处理更加清晰，即随机roll一个数、并计算它的欧拉函数，有
 <span class="math display">\[
-flag[i]=1:Φ(Random \space number) \newline
+\begin{split}
+flag[i]=1:Φ(Random \space number) \\
 flag[i]=0:Φ(Prime \space number)
+\end{split}
 \]</span>
 那么这个时候我们需要进行两层判断，第一层是判断所给数值加上一是否为素数，第二层是判断素数的bit数是否为100。代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">data = </span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span>.join(<span class="string">&#x27;0&#x27;</span> <span class="keyword">if</span> is_prime(data[i]+<span class="number">1</span>) <span class="keyword">and</span> <span class="built_in">len</span>(<span class="built_in">bin</span>(data[i]+<span class="number">1</span>)[<span class="number">2</span>:]) == <span class="number">100</span> <span class="keyword">else</span> <span class="string">&#x27;1&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)))</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(flag,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">#!Hope_y0u^can_h4ve_</span></span><br></pre></td></tr></table></figure>
@@ -307,13 +311,17 @@ flag[i]=0:Φ(Prime \space number)
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#雪下得好大，花圃周围的亮白色身影是Z3r0吗</span></span><br><span class="line">secret = <span class="built_in">bin</span>(bytes_to_long(Z3r0_part))[<span class="number">2</span>:]</span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">look_for_Z3r0 = [<span class="built_in">pow</span>(<span class="number">31137</span>,<span class="number">65537</span>,p*getPrime(<span class="number">512</span>)) <span class="keyword">if</span> i == <span class="string">&#x27;1&#x27;</span> <span class="keyword">else</span> <span class="built_in">pow</span>(<span class="number">31137</span>,<span class="number">65537</span>,getPrime(<span class="number">512</span>)*getPrime(<span class="number">512</span>)) <span class="keyword">for</span> i <span class="keyword">in</span> secret]</span><br></pre></td></tr></table></figure>
 <p>对于flag二进制位上的数字，令Q为随机素数，有 <span
 class="math display">\[
+\begin{split}
 flag[i]=1:31337^{65537} \enspace mod \enspace p·Q\\
-flag[i]=0:31337^{65537} \enspace mod \enspace Q_1·Q_2
+flag[i]=0:31337^{65537} \enspace mod \enspace Q_1·Q_2\\
+\end{split}
 \]</span> 两个flag位等于1的数据<span
 class="math inline">\(c_1,c_2\)</span>有关系如下 <span
 class="math display">\[
+\begin{split}
 c_1=31337^{65537}+k_1pQ_1\\
 c_2=31337^{65537}+k_2pQ_2\\
+\end{split}
 \]</span> 因此可以得到关系 <span class="math display">\[
 c_1-c_2=(k_1Q_1-k_2Q_2)p
 \]</span> 然后玩法就多了，可以考虑用gcd把p求出来然后求证每个数据在<span
@@ -332,8 +340,10 @@ class="math inline">\(31337^{65537}\)</span>等价，这样在求出p以后每�
 class="math inline">\(GF(149)\)</span>，群b位于<span
 class="math inline">\(GF(163)\)</span>，数据与flag位的关系如下 <span
 class="math display">\[
+\begin{split}
 flag[i]=1:M=CRT([m^{r_a},m^{r_b}],[149,163])\\
 flag[i]=0:M=RandomMatrix
+\end{split}
 \]</span> 我们把CRT过程分成两半来进行考虑，<span
 class="math inline">\(M\)</span>矩阵模<span
 class="math inline">\(149\)</span>时得到矩阵<span
@@ -346,8 +356,10 @@ class="math inline">\(m\)</span>在<span
 class="math inline">\(b\)</span>中的阶为<span
 class="math inline">\(ob\)</span>，对于flag为1的数，把它们放在模p下进行以oa为幂的幂运算，放在模q下进行以ob为幂的幂运算，可以得到下列式子
 <span class="math display">\[
+\begin{split}
 M^{oa}=m^{ra*oa}=1~mod~p\\
 M^{ob}=m^{rb*ob}=1~mod~q
+\end{split}
 \]</span> 因此在<span
 class="math inline">\(Zmod(pq)\)</span>上会得到单位矩阵，通过这个性质我们可以区分所有的数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">a,b = MatrixGroup(matrix(GF(<span class="number">149</span>),[[<span class="number">41</span>,<span class="number">21</span>],[<span class="number">82</span>,<span class="number">81</span>]])),MatrixGroup(matrix(GF(<span class="number">163</span>),[[<span class="number">41</span>,<span class="number">21</span>],[<span class="number">82</span>,<span class="number">81</span>]]))</span><br><span class="line"></span><br><span class="line">oa,ob = a.order(),b.order()</span><br><span class="line">data = </span><br><span class="line"></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span>.join(<span class="string">&#x27;1&#x27;</span> <span class="keyword">if</span> matrix(GF(<span class="number">149</span>),data[i])^(oa) == identity_matrix(<span class="number">2</span>) <span class="keyword">and</span> matrix(GF(<span class="number">163</span>),data[i])^(ob) == identity_matrix(<span class="number">2</span>) <span class="keyword">else</span> <span class="string">&#x27;0&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)))</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(flag,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">#b&#x27;CBCTF&#123;W1sh_Y\xb0ur_N3xt_Y3&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -357,8 +369,10 @@ class="math inline">\(Zmod(pq)\)</span>上会得到单位矩阵，通过这个�
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#前两天刚考完研，图书馆难得清静，你在9楼搜寻，只见角落闪烁着微光。好像是beeee！</span></span><br><span class="line">secret = <span class="built_in">bin</span>(bytes_to_long(beeee_part))[<span class="number">2</span>:]</span><br><span class="line">m,p = getPrime(<span class="number">1023</span>),getPrime(<span class="number">1024</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">ppallier</span>(<span class="params">m,p</span>):</span><br><span class="line">    c = <span class="built_in">pow</span>(p+<span class="number">1</span>,getPrime(<span class="number">40</span>)*m,p^<span class="number">2</span>)*<span class="built_in">pow</span>(random.randint(<span class="number">1</span>,p^<span class="number">2</span>-<span class="number">1</span>),p,p^<span class="number">2</span>)%p^<span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line">look_for_beeee = [<span class="built_in">pow</span>(ppallier(m,p),p-<span class="number">1</span>,p^<span class="number">2</span>) <span class="keyword">if</span> i == <span class="string">&#x27;1&#x27;</span> <span class="keyword">else</span> random.randint(<span class="number">1</span>,p^<span class="number">2</span>-<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> secret]</span><br></pre></td></tr></table></figure>
 <p>基于pallier，把pallier里的若干参数都替换成了p，底数也从pq替换成为p^2，加密消息不变。
 <span class="math display">\[
+\begin{split}
 flag[i]=1:ppallier(m,p)\\
 flag[i]=0:RandomNumber
+\end{split}
 \]</span> 首先对于ppallier加密的数据，有 <span class="math display">\[
 c=(p+1)^{km}r^p~mod~p^2\\
 \]</span> 根据二项式定理， <span class="math display">\[
@@ -366,8 +380,10 @@ c=(p+1)^{km}r^p~mod~p^2\\
 \]</span> 而后半部分的随机数相关部分可以通过<span
 class="math inline">\(p-1\)</span>的幂运算消除，类似Z3r0，进行相似的分析，
 <span class="math display">\[
+\begin{split}
 c_1^{p-1}=1+k_1mp(p-1)=1-pk_1m~mod~p^2\\
 c_2^{p-1}=1+k_2mp(p-1)=1-pk_2m~mod~p^2
+\end{split}
 \]</span>
 因此这里其实就又只是一个gcd，不同点在于这里要筛出一个为1的点，拿三个点进行多次比较，如果gcd值够大就记为1。啊哈哈，真是炒冷饭大师啊。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">data = </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">get1_i</span>(<span class="params">data</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i+<span class="number">1</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">            <span class="keyword">if</span> gcd(data[<span class="number">0</span>]-data[i],data[<span class="number">0</span>]-data[j]) &gt; <span class="number">2</span>^<span class="number">200</span>:</span><br><span class="line">                <span class="keyword">return</span> i</span><br><span class="line"></span><br><span class="line">i1 = get1_i(data)</span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span>.join(<span class="string">&#x27;1&#x27;</span> <span class="keyword">if</span> i <span class="keyword">in</span> [i1,<span class="number">0</span>] <span class="keyword">or</span> gcd(data[i1]-data[i],data[<span class="number">0</span>]-data[i]) &gt; <span class="number">2</span>^<span class="number">200</span> <span class="keyword">else</span> <span class="string">&#x27;0&#x27;</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)))</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(<span class="built_in">int</span>(flag,<span class="number">2</span>)))</span><br><span class="line"><span class="comment">#ar_fulf111ed_w1th_h4pp1</span></span><br></pre></td></tr></table></figure>
