@@ -28,6 +28,8 @@
 
 <meta name="generator" content="Hexo 7.1.1"></head>
   <body data-theme="light" class="notransition">
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
       const body = document.body;
       const data = body.getAttribute("data-theme");
@@ -261,121 +263,120 @@
   <main class="page-content" aria-label="Content">
       <div class="post">
         <div class="post-body">
-   <div id="links">
-      <style>
-         .links-content{
-         margin-top:1rem;
-         }
-         .link-navigation::after {
-         content: " ";
-         display: block;
-         clear: both;
-         }
-         .card {
-         width: 40%;
-         font-size: 1rem;
-         padding: 10px 20px;
-         border-radius: 4px;
-         transition-duration: 0.15s;
-         margin-bottom: 1rem;
-         display:flex;
-         }
-         .card:nth-child(odd) {
-         float: left;
-         }
-         .card:nth-child(even) {
-         float: right;
-         }
-         .card:hover {
-         transform: scale(1.1);
-         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
-         }
-         .card a {
-         border:none;
-         }
-         .card .ava {
-         width: 3rem!important;
-         height: 3rem!important;
-         margin:0!important;
-         margin-right: 1em!important;
-         border-radius:4px;
-         }
-         .card .card-header {
-         font-style: italic;
-         overflow: hidden;
-         width: 100%;
-         }
-         .card .card-header a {
-         font-style: normal;
-         color: #2bbc8a;
-         font-weight: bold;
-         text-decoration: none;
-         }
-         .card .card-header a:hover {
-         color: #d480aa;
-         text-decoration: none;
-         }
-         .card .card-header .info {
-         font-style:normal;
-         color:#a3a3a3;
-         font-size:14px;
-         min-width: 0;
-         overflow: hidden;
-         white-space: nowrap;
-         }
-      </style>
-      <div class="links-content">
-         <div class="link-navigation">
-            <div class="card">
-               <img class="ava" src="https://q.qlogo.cn/headimg_dl?spec=100&img_type=jpg&dst_uin=1142381085" />
-               <div class="card-header">
-                  <div>
-                     <a target="_blank" rel="noopener" href="https://tangcuxiaojikuai.xyz/">小鸡块</a>
-                  </div>
-                  <div class="info">🐓</div>
-               </div>
-            </div>
-            <div class="card">
-               <img class="ava" src="https://q.qlogo.cn/headimg_dl?spec=100&img_type=jpg&dst_uin=1507679486" />
-               <div class="card-header">
-                  <div>
-                     <a target="_blank" rel="noopener" href="https://march-7th.tech/">March7th</a>
-                  </div>
-                  <div class="info">👩‍🦳</div>
-               </div>
-            </div>
-             <div class="card">
-               <img class="ava" src="https://q.qlogo.cn/headimg_dl?spec=100&img_type=jpg&dst_uin=2497404097" />
-               <div class="card-header">
-                  <div>
-                     <a target="_blank" rel="noopener" href="https://thebearhimself.rest/">gtg</a>
-                  </div>
-                  <div class="info">🐻</div>
-               </div>
-            </div>
-             <div class="card">
-               <img class="ava" src="https://q.qlogo.cn/headimg_dl?spec=100&img_type=jpg&dst_uin=3071036174" />
-               <div class="card-header">
-                  <div>
-                     <a target="_blank" rel="noopener" href="https://ech0her.github.io/">Ech0</a>
-                  </div>
-                  <div class="info">🔊</div>
-               </div>
-            </div>
-             <div class="card">
-               <img class="ava" src="https://q.qlogo.cn/headimg_dl?spec=100&img_type=jpg&dst_uin=2974199505" />
-               <div class="card-header">
-                  <div>
-                     <a target="_blank" rel="noopener" href="https://www.cnblogs.com/ZimaBlue/">Zima</a>
-                  </div>
-                  <div class="info">🔵</div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+<div id="links">
+<pre><code>  &lt;style&gt;
+     .links-content&#123;
+     margin-top:1rem;
+     &#125;
+     .link-navigation::after &#123;
+     content: &quot; &quot;;
+     display: block;
+     clear: both;
+     &#125;
+     .card &#123;
+     width: 40%;
+     font-size: 1rem;
+     padding: 10px 20px;
+     border-radius: 4px;
+     transition-duration: 0.15s;
+     margin-bottom: 1rem;
+     display:flex;
+     &#125;
+     .card:nth-child(odd) &#123;
+     float: left;
+     &#125;
+     .card:nth-child(even) &#123;
+     float: right;
+     &#125;
+     .card:hover &#123;
+     transform: scale(1.1);
+     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+     &#125;
+     .card a &#123;
+     border:none;
+     &#125;
+     .card .ava &#123;
+     width: 3rem!important;
+     height: 3rem!important;
+     margin:0!important;
+     margin-right: 1em!important;
+     border-radius:4px;
+     &#125;
+     .card .card-header &#123;
+     font-style: italic;
+     overflow: hidden;
+     width: 100%;
+     &#125;
+     .card .card-header a &#123;
+     font-style: normal;
+     color: #2bbc8a;
+     font-weight: bold;
+     text-decoration: none;
+     &#125;
+     .card .card-header a:hover &#123;
+     color: #d480aa;
+     text-decoration: none;
+     &#125;
+     .card .card-header .info &#123;
+     font-style:normal;
+     color:#a3a3a3;
+     font-size:14px;
+     min-width: 0;
+     overflow: hidden;
+     white-space: nowrap;
+     &#125;
+  &lt;/style&gt;
+  &lt;div class=&quot;links-content&quot;&gt;
+     &lt;div class=&quot;link-navigation&quot;&gt;
+        &lt;div class=&quot;card&quot;&gt;
+           &lt;img class=&quot;ava&quot; src=&quot;https://q.qlogo.cn/headimg_dl?spec=100&amp;img_type=jpg&amp;dst_uin=1142381085&quot; /&gt;
+           &lt;div class=&quot;card-header&quot;&gt;
+              &lt;div&gt;
+                 &lt;a href=&quot;https://tangcuxiaojikuai.xyz/&quot;&gt;小鸡块&lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;info&quot;&gt;🐓&lt;/div&gt;
+           &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;card&quot;&gt;
+           &lt;img class=&quot;ava&quot; src=&quot;https://q.qlogo.cn/headimg_dl?spec=100&amp;img_type=jpg&amp;dst_uin=1507679486&quot; /&gt;
+           &lt;div class=&quot;card-header&quot;&gt;
+              &lt;div&gt;
+                 &lt;a href=&quot;https://march-7th.tech/&quot;&gt;March7th&lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;info&quot;&gt;👩‍🦳&lt;/div&gt;
+           &lt;/div&gt;
+        &lt;/div&gt;
+         &lt;div class=&quot;card&quot;&gt;
+           &lt;img class=&quot;ava&quot; src=&quot;https://q.qlogo.cn/headimg_dl?spec=100&amp;img_type=jpg&amp;dst_uin=2497404097&quot; /&gt;
+           &lt;div class=&quot;card-header&quot;&gt;
+              &lt;div&gt;
+                 &lt;a href=&quot;https://thebearhimself.rest/&quot;&gt;gtg&lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;info&quot;&gt;🐻&lt;/div&gt;
+           &lt;/div&gt;
+        &lt;/div&gt;
+         &lt;div class=&quot;card&quot;&gt;
+           &lt;img class=&quot;ava&quot; src=&quot;https://q.qlogo.cn/headimg_dl?spec=100&amp;img_type=jpg&amp;dst_uin=3071036174&quot; /&gt;
+           &lt;div class=&quot;card-header&quot;&gt;
+              &lt;div&gt;
+                 &lt;a href=&quot;https://ech0her.github.io/&quot;&gt;Ech0&lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;info&quot;&gt;🔊&lt;/div&gt;
+           &lt;/div&gt;
+        &lt;/div&gt;
+         &lt;div class=&quot;card&quot;&gt;
+           &lt;img class=&quot;ava&quot; src=&quot;https://q.qlogo.cn/headimg_dl?spec=100&amp;img_type=jpg&amp;dst_uin=2974199505&quot; /&gt;
+           &lt;div class=&quot;card-header&quot;&gt;
+              &lt;div&gt;
+                 &lt;a href=&quot;https://www.cnblogs.com/ZimaBlue/&quot;&gt;Zima&lt;/a&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;info&quot;&gt;🔵&lt;/div&gt;
+           &lt;/div&gt;
+        &lt;/div&gt;
+     &lt;/div&gt;
+  &lt;/div&gt;</code></pre>
 </div>
-
+</div>
 
        </div>
          <div class="dis">
